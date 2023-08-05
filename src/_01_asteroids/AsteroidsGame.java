@@ -19,7 +19,8 @@ public class AsteroidsGame implements GameScene, ActionListener {
 	 * 1. In Java a constructor is a special method used to initialize objects If a
 	 * class does have any constructors java will use a default constructor
 	 */
-	Rocket rocket = new Rocket();
+//	Rocket rocket = new Rocket();
+	Rocket rocket = new Rocket(100,100);
 	/*
 	 * However if you tried running this you'll notice that we get a message popping
 	 * up saying you need to write a constructor. This is because if we let it run
@@ -27,8 +28,8 @@ public class AsteroidsGame implements GameScene, ActionListener {
 	 * initialized by the default constructor and would have no value.
 	 */
 
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 800;
+	public static final int WIDTH = 2560;
+	public static final int HEIGHT = 1440;
 	int score = 0;
 	Random ran = new Random();
 	Game game = new Game("Asteroids");
@@ -47,8 +48,8 @@ public class AsteroidsGame implements GameScene, ActionListener {
 		game.addController(rocket);
 		game.start();
 		game.setSize(WIDTH, HEIGHT);
-		rof = new Timer(1000, this);
-		spawner = new Timer(5000, this);
+		rof = new Timer(100, this);
+		spawner = new Timer(1000, this);
 		spawner.start();
 		asteroids.add(new Asteroid(50, 50));
 	}
@@ -115,7 +116,7 @@ public class AsteroidsGame implements GameScene, ActionListener {
 		for (Asteroid asteroid : asteroids) {
 			if (asteroid.collisionBox.intersects(rocket.collisionBox)) {
 				lives--;
-				rocket = new Rocket();
+				rocket = new Rocket(500,500);
 				game.addController(rocket);
 			}
 			for (Bullet bullet : bullets) {
